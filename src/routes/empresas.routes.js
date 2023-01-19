@@ -1,15 +1,17 @@
 import {Router} from 'express';
-import { getEmpresas, createEmpresas, updateEmpresas, deleteEmpresas } from '../controllers/empresas.controllers.js';
+import { getEmpresas, createEmpresas, updateEmpresas, deleteEmpresas, getEmpresa } from '../controllers/empresas.controllers.js';
 
 
 const router = Router()
 
-router.get('/employes', getEmpresas)
+router.get('/empresas', getEmpresas)
 
-router.post('/employes', createEmpresas )
+router.get('/empresa/:id', getEmpresa)
 
-router.put('/employes', updateEmpresas)
+router.post('/empresas', createEmpresas )
 
-router.delete('/employes', deleteEmpresas)
+router.patch('/empresas/:id', updateEmpresas)
+
+router.delete('/empresas/:id', deleteEmpresas)
 
 export default router
