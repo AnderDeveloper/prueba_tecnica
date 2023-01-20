@@ -4,14 +4,14 @@ import { getEmpresas, createEmpresas, updateEmpresas, deleteEmpresas, getEmpresa
 
 const router = Router()
 
-router.get('/empresas', getEmpresas)
+router.get('/companys', getEmpresas)
 
-router.get('/empresa/:id', getEmpresa)
+router.get('/company/:id', getEmpresa)
 
-router.post('/empresas', createEmpresas )
+router.post('/companys', createEmpresas )
 
-router.patch('/empresas/:id', updateEmpresas)
+router.patch('/companys/:id', updateEmpresas)
 
-router.delete('/empresas/:id', deleteEmpresas)
+router.delete('/companys/:id', deleteEmpresas)
 
 export default router

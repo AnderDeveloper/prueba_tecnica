@@ -5,17 +5,17 @@ export const getEmpresas = async (req, res) => {
         const [rows] = await pool.query('SELECT * FROM companys') 
         res.json(rows)
     }catch (error){
-        return res.status(500).json({message:'Algo salió mal'})
+        return res.status(500).json({message:'something went wrong'})
     }
 }
 
 export const getEmpresa = async (req, res) => {
     try{
         const [rows] = await pool.query('SELECT * FROM companys WHERE id = ?', [req.params.id]) 
-        if (rows.length <= 0) return res.status(404).json({message: 'Empresas not found'})
+        if (rows.length <= 0) return res.status(404).json({message: 'Company not found'})
         res.json(rows[0])
     }catch (error){
-        return res.status(500).json({message:'Algo salió mal'})
+        return res.status(500).json({message:'something went wrong'})
     }
 }
 
@@ -28,7 +28,7 @@ export const createEmpresas = async (req, res) => {
         [name, country, hubspot_id, is_active, create_date])
         res.send({id: rows.insertId, name, country, hubspot_id, is_active})
     }catch (error){
-        return res.status(500).json({message:'Algo salió mal'})
+        return res.status(500).json({message:'something went wrong'})
     }
 }
 
@@ -40,14 +40,14 @@ export const updateEmpresas = async (req, res) => {
         console.log(result)
 
         if (result.affectedRows === 0) return res.status(404).json({
-            message: 'Empresa not found'
+            message: 'Company not found'
         })
 
         const [rows] = await pool.query('SELECT * FROM companys WHERE id = ?',[id])
 
         res.json(rows[0])
     }catch (error){
-        return res.status(500).json({message:'Algo salió mal'})
+        return res.status(500).json({message:'something went wrong'})
     }
 }
 
@@ -56,9 +56,9 @@ export const deleteEmpresas = async (req, res) => {
         const [result] = await pool.query('DELETE FROM companys WHERE id = ?',[req.params.id])
         console.log(result)
 
-        if (result.affectedRows <= 0) return res.status(404).json({message:'Empresa not found'})
+        if (result.affectedRows <= 0) return res.status(404).json({message:'Company not found'})
         res.sendStatus(204)
     }catch (error){
-        return res.status(500).json({message:'Algo salió mal'})
+        return res.status(500).json({message:'Something went wrong'})
     }
 }
