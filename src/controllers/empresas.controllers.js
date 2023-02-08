@@ -1,6 +1,5 @@
 import {pool} from '../db.js'
 
-
 export const getEmpresas = async (req, res) => {
     try{
         const [rows] = await pool.query('SELECT * FROM companys') 
@@ -24,9 +23,9 @@ export const getEmpresa = async (req, res) => {
 export const createEmpresas = async (req, res) => {
     const {name, country, hubspot_id, is_active, create_date} = req.body
     try{
-        
         const [rows] = await pool.query('INSERT INTO companys (name, country, hubspot_id, is_active) values (?, ?, ?, ?)',
-        [name, country, hubspot_id, is_active, create_date])
+        [name, country, hubspot_id, is_active])
+        
         res.send({id: rows.insertId, name, country, hubspot_id, is_active})
     }catch (error){
         return res.status(500).json({message:'something went wrong'})
